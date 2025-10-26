@@ -1,3 +1,14 @@
+projectflow.txt
+Experiments/decision_tree.pkl
+Experiments/scalar.pkl
+Experiments/preprocess.pkl
+Experiments/dataset.csv
+Experiments/mongodb_setup.ipynb
+artifacts
+log
+envv
+data
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
