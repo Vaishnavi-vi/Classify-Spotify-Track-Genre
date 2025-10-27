@@ -4,6 +4,7 @@ Experiments/scalar.pkl
 Experiments/preprocess.pkl
 Experiments/dataset.csv
 Experiments/mongodb_setup.ipynb
+Experiments/xgboost.pkl
 artifacts
 log
 envv

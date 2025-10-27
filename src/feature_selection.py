@@ -115,8 +115,8 @@ def feature_selection(train_scaled_df:pd.DataFrame,test_scaled_df:pd.DataFrame,s
 def drop_columns(train_scaled_df:pd.DataFrame,test_scaled_df:pd.DataFrame)->pd.DataFrame:
     """  Drop Columns WHde m_classif valueis less """
     try:
-        train_scaled_df.drop(["key","explicit"],axis=1,inplace=True)
-        test_scaled_df.drop(["key","explicit"],axis=1,inplace=True)
+        train_scaled_df.drop(["mode"],axis=1,inplace=True)
+        test_scaled_df.drop(["mode"],axis=1,inplace=True)
         logger.debug("Dropping less important for model ")
         return train_scaled_df,test_scaled_df
     except Exception as e:
