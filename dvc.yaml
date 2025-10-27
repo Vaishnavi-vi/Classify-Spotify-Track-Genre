@@ -5,6 +5,11 @@ stages:
     - src/data_ingestion.py
     outs :
     - data/raw
+    params :
+    - data_ingestion.test_size
+    - mongodb.CONNECTION_URL
+    - mongodb.DB_NAME
+    - mongodb.COLLECTION_NAME
   feature_engineering :
     cmd: python src/feature_engineering.py
     deps :
@@ -32,6 +37,13 @@ stages:
     - data/preprocess/y_train_processed.csv
     outs: 
     - artifacts/xgb_model.pkl
+    params:
+    - model_training.model_type
+    - model_training.params.n_estimators
+    - model_training.params.learning_rate
+    - model_training.params.max_depth
+    - model_training.params.subsample
+    - model_training.params.colsample_bytree
   model_evaluation :
     cmd : python src/model_evaluation.py
     deps: 
@@ -39,5 +51,13 @@ stages:
     - data/preprocess/y_test_processed.csv
     outs:
     - artifacts/metrics.json
+    - artifacts/confusion_matrix.png
+    params:
+    - model_training.model_type
+    - model_training.params.n_estimators
+    - model_training.params.learning_rate
+    - model_training.params.max_depth
+    - model_training.params.subsample
+    - model_training.params.colsample_bytree
 
   

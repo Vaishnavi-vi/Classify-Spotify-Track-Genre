@@ -5,7 +5,7 @@ from xgboost import XGBClassifier
 import logging
 import os
 import pickle
-
+import yaml
 
 log_dir="logs"
 os.makedirs(log_dir,exist_ok=True)
@@ -30,6 +30,24 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
+def load_params(params_path:str)->dict:
+    "Load params from params.yaml file"
+    try:
+        with open(params_path,"r") as f:
+            params=yaml.safe_load(f)
+        logger.debug("Parameters retrieved %s",params_path)
+        return params
+    except FileNotFoundError as e:
+        logger.error("File not found %s",e)
+        raise
+    except yaml.YAMLError as e:
+        logger.error("Yaml error: %s",e)
+        raise
+    except Exception as e:
+        logger.error("Unexpected error occurred:%s",e)
+        raise
+
+
 def load_data():
     try:
         x_train = pd.read_csv("data/preprocess/x_train_processed.csv")
@@ -41,27 +59,17 @@ def load_data():
         raise
 
 
-def train_and_log_model(x_train, y_train):
+def train_and_log_model(x_train, y_train,params):
     try:
  
         mlflow.set_experiment("XGBoost_Classification")
 
     # Start MLflow run
         with mlflow.start_run():
+            model_params=params["model_training"]["params"]
         # Model setup
-            params = {
-            "n_estimators": 300,
-            "max_depth": 8,
-            "learning_rate": 0.05,
-            "subsample": 0.9,
-            "colsample_bytree": 0.9,
-            "reg_lambda": 3,
-            "reg_alpha": 2,
-            "gamma": 0.2,
-            "random_state": 42}
-        
-
-            model = XGBClassifier(**params)
+            
+            model = XGBClassifier(**model_params)
             model.fit(x_train, y_train)
         
         #log parameters
@@ -80,8 +88,9 @@ def train_and_log_model(x_train, y_train):
         
 def main():
     try:
+        params=load_params(params_path="params.yaml")
         x_train,y_train=load_data()
-        train_and_log_model(x_train,y_train)
+        train_and_log_model(x_train,y_train,params)
         logger.debug("Training done successfully !!!")
     except Exception as e:
         logger.error("Unexpected error occur:%s",e)

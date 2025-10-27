@@ -1,0 +1,21 @@
+data_ingestion: 
+  test_size: 0.20
+
+mongodb:
+  CONNECTION_URL: "mongodb+srv://vaishnavibarolia_db_user:acKi2dkVl8ogy7yh@cluster0.3xoibcj.mongodb.net/?appName=Cluster0"
+  DB_NAME: "Track_Genre"
+  COLLECTION_NAME: "Track_Genre_Data"
+
+
+model_training:
+  model_type: "xgboost"
+  params:
+    n_estimators: 100
+    learning_rate: 0.1
+    max_depth: 5
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+
+
+  

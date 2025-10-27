@@ -5,8 +5,15 @@ stages:
     deps:
     - path: src/data_ingestion.py
       hash: md5
-      md5: b6c43365e717da34dce186c0e0999b0f
-      size: 2988
+      md5: d371b60f35407b09e3a013a7a84f4449
+      size: 5432
+    params:
+      params.yaml:
+        data_ingestion.test_size: 0.2
+        mongodb.COLLECTION_NAME: Track_Genre_Data
+        mongodb.CONNECTION_URL: 
+          mongodb+srv://vaishnavibarolia_db_user:acKi2dkVl8ogy7yh@cluster0.3xoibcj.mongodb.net/?appName=Cluster0
+        mongodb.DB_NAME: Track_Genre
     outs:
     - path: data/raw
       hash: md5
@@ -28,8 +35,8 @@ stages:
     outs:
     - path: artifacts/Optimal_k.png
       hash: md5
-      md5: f0eac38045a7413339a4dd5dfa422834
-      size: 33400
+      md5: 2c1f731a8d664f6ef7d08d10092e5cb1
+      size: 33286
     - path: artifacts/cluster_metrics.json
       hash: md5
       md5: ed1391262026dda82d93aa8491aacf05
@@ -58,8 +65,8 @@ stages:
     outs:
     - path: artifacts/mi_feature_importance.png
       hash: md5
-      md5: fb12119eecc19f4c424e6385e71d1f6a
-      size: 26778
+      md5: 3506ba4059586946ef6f95b465fc0f73
+      size: 26706
     - path: artifacts/preprocess.pkl
       hash: md5
       md5: 3d04a634fe3655e5bb09022445e22a8e
@@ -84,11 +91,19 @@ stages:
       hash: md5
       md5: 15fce65032e0b6680b7474d9a9ec78f2
       size: 612178
+    params:
+      params.yaml:
+        model_training.model_type: xgboost
+        model_training.params.colsample_bytree: 0.8
+        model_training.params.learning_rate: 0.1
+        model_training.params.max_depth: 5
+        model_training.params.n_estimators: 100
+        model_training.params.subsample: 0.8
     outs:
     - path: artifacts/xgb_model.pkl
       hash: md5
-      md5: 1622c0ec68da9080767048ea434b4cf9
-      size: 9801904
+      md5: cc04e64877869281be0a73355912d00d
+      size: 788667
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
@@ -100,8 +115,20 @@ stages:
       hash: md5
       md5: 786aac8dfc7ccbd90a53840972f006a1
       size: 114013
+    params:
+      params.yaml:
+        model_training.model_type: xgboost
+        model_training.params.colsample_bytree: 0.8
+        model_training.params.learning_rate: 0.1
+        model_training.params.max_depth: 5
+        model_training.params.n_estimators: 100
+        model_training.params.subsample: 0.8
     outs:
+    - path: artifacts/confusion_matrix.png
+      hash: md5
+      md5: 99e3b358104de27402d515589f52cfd4
+      size: 22200
     - path: artifacts/metrics.json
       hash: md5
-      md5: fdc2e37f2200d82bd276771e5a57099a
-      size: 150
+      md5: a38053baeab736c970b01bfb515aeb39
+      size: 196
