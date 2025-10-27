@@ -26,6 +26,18 @@ stages:
       md5: 6aead9d955276a28c2123cdbe2fcaf48
       size: 10814
     outs:
+    - path: artifacts/Optimal_k.png
+      hash: md5
+      md5: f0eac38045a7413339a4dd5dfa422834
+      size: 33400
+    - path: artifacts/cluster_metrics.json
+      hash: md5
+      md5: ed1391262026dda82d93aa8491aacf05
+      size: 112
+    - path: artifacts/cluster_plots.png
+      hash: md5
+      md5: b502a6eaffb1ffdecdfb6493acd38d5c
+      size: 44748
     - path: data/feature_engineering
       hash: md5
       md5: f6d79518a8829602a378712cd5ce9f46.dir
@@ -41,11 +53,55 @@ stages:
       nfiles: 2
     - path: src/feature_selection.py
       hash: md5
-      md5: 9cb03d019f8fd6fa06e44833dda66dd5
-      size: 8114
+      md5: 0933e8a12a5dd0c4ec05c414e224a238
+      size: 8278
     outs:
+    - path: artifacts/mi_feature_importance.png
+      hash: md5
+      md5: fb12119eecc19f4c424e6385e71d1f6a
+      size: 26778
+    - path: artifacts/preprocess.pkl
+      hash: md5
+      md5: 3d04a634fe3655e5bb09022445e22a8e
+      size: 500
+    - path: artifacts/scaler.pkl
+      hash: md5
+      md5: 20819d35124baa4548b30f6722e533d0
+      size: 129
     - path: data/preprocess
       hash: md5
       md5: bd68ae566e7bfca851a7c9cc65eeebc3.dir
       size: 40613023
       nfiles: 4
+  model_training:
+    cmd: python src/model_training.py
+    deps:
+    - path: data/preprocess/x_train_processed.csv
+      hash: md5
+      md5: e828385f0de2a7a24b01405b1f148528
+      size: 33627158
+    - path: data/preprocess/y_train_processed.csv
+      hash: md5
+      md5: 15fce65032e0b6680b7474d9a9ec78f2
+      size: 612178
+    outs:
+    - path: artifacts/xgb_model.pkl
+      hash: md5
+      md5: 1622c0ec68da9080767048ea434b4cf9
+      size: 9801904
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: data/preprocess/x_test_processed.csv
+      hash: md5
+      md5: c939988f71a4f5c262b33640e2419f12
+      size: 6259674
+    - path: data/preprocess/y_test_processed.csv
+      hash: md5
+      md5: 786aac8dfc7ccbd90a53840972f006a1
+      size: 114013
+    outs:
+    - path: artifacts/metrics.json
+      hash: md5
+      md5: fdc2e37f2200d82bd276771e5a57099a
+      size: 150

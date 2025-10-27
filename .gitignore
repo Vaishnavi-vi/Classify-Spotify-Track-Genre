@@ -6,9 +6,10 @@ Experiments/dataset.csv
 Experiments/mongodb_setup.ipynb
 Experiments/xgboost.pkl
 artifacts
-log
+logs
 envv
 data
+mlruns
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

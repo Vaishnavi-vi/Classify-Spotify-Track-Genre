@@ -69,6 +69,9 @@ def apply_power_transformer(train_data: pd.DataFrame, test_data: pd.DataFrame) -
             ],
             remainder="passthrough"
         )
+        os.makedirs("artifacts",exist_ok=True)
+        with open(os.path.join("artifacts", "preprocess.pkl"), "wb") as f:
+            pickle.dump(preprocess, f)
 
         # Fit on train and transform both datasets
         train_scaled = preprocess.fit_transform(train_data)

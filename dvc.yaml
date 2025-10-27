@@ -12,6 +12,9 @@ stages:
     - src/feature_engineering.py
     outs :
     - data/feature_engineering
+    - artifacts/Optimal_k.png
+    - artifacts/cluster_metrics.json
+    - artifacts/cluster_plots.png
   feature_selection :
     cmd : python src/feature_selection.py
     deps :
@@ -19,3 +22,22 @@ stages:
     - src/feature_selection.py
     outs :
     - data/preprocess
+    - artifacts/scaler.pkl
+    - artifacts/preprocess.pkl
+    - artifacts/mi_feature_importance.png
+  model_training :
+    cmd : python src/model_training.py
+    deps:
+    - data/preprocess/x_train_processed.csv
+    - data/preprocess/y_train_processed.csv
+    outs: 
+    - artifacts/xgb_model.pkl
+  model_evaluation :
+    cmd : python src/model_evaluation.py
+    deps: 
+    - data/preprocess/x_test_processed.csv
+    - data/preprocess/y_test_processed.csv
+    outs:
+    - artifacts/metrics.json
+
+  
