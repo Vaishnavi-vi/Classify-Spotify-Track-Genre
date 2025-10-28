@@ -113,7 +113,7 @@ def load_from_mongodb(params:dict)->pd.DataFrame:
         logger.debug("Data loaded from mongodb successfully!!!")
         return df
     except Exception as e:
-        logger.error("Error loading data from nongodb :%s",e)
+        logger.error("Error loading data from nongodb :%s",e) 
         raise
     
 def save_data(train_data: pd.DataFrame, test_data: pd.DataFrame, data_path: str) -> None:
@@ -150,6 +150,8 @@ def main():
     
 if __name__=="__main__":
     main()
+    
+    
     
 
     

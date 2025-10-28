@@ -7,6 +7,10 @@ import os
 import pickle
 import yaml
 
+mlflow.set_tracking_uri("file:///C:/Users/Dell/OneDrive - Havells/Desktop/Classify-Spotify-Track-Genre/mlruns")
+# local MLflow UI
+# mlflow.set_tracking_uri("s3://your-bucket-name/mlflow")
+
 log_dir="logs"
 os.makedirs(log_dir,exist_ok=True)
 
@@ -63,6 +67,7 @@ def train_and_log_model(x_train, y_train,params):
     try:
  
         mlflow.set_experiment("XGBoost_Classification")
+        mlflow.xgboost.autolog(log_input_examples=True, log_model_signatures=True)
 
     # Start MLflow run
         with mlflow.start_run():
@@ -78,7 +83,7 @@ def train_and_log_model(x_train, y_train,params):
             model_path = "artifacts/xgb_model.pkl"
             with open(model_path, "wb") as f:
                 pickle.dump(model, f)
-            mlflow.xgboost.log_model(model, "model")
+            mlflow.xgboost.log_model(model, "model",artifact_path="models",registered_model_name="xgboost_classifier")
         
             logger.debug("Training of model done successfully !!!")
             return model_path
@@ -98,6 +103,8 @@ def main():
         
 if __name__=="__main__":
     main()
+    
+
 
 
         

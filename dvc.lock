@@ -5,8 +5,8 @@ stages:
     deps:
     - path: src/data_ingestion.py
       hash: md5
-      md5: d371b60f35407b09e3a013a7a84f4449
-      size: 5432
+      md5: 98d20475856b1b1de77ce14cf86325bc
+      size: 5445
     params:
       params.yaml:
         data_ingestion.test_size: 0.2
@@ -35,8 +35,8 @@ stages:
     outs:
     - path: artifacts/Optimal_k.png
       hash: md5
-      md5: 2c1f731a8d664f6ef7d08d10092e5cb1
-      size: 33286
+      md5: d962eab06a4ae8068900247644a44a35
+      size: 33373
     - path: artifacts/cluster_metrics.json
       hash: md5
       md5: ed1391262026dda82d93aa8491aacf05
@@ -60,75 +60,79 @@ stages:
       nfiles: 2
     - path: src/feature_selection.py
       hash: md5
-      md5: 0933e8a12a5dd0c4ec05c414e224a238
-      size: 8278
+      md5: 5a4a0f30d731ba9ff375ad78fdd273c1
+      size: 6710
     outs:
     - path: artifacts/mi_feature_importance.png
       hash: md5
-      md5: 3506ba4059586946ef6f95b465fc0f73
-      size: 26706
-    - path: artifacts/preprocess.pkl
+      md5: 48d5d00104761dff2bb2c2dde58add0e
+      size: 26272
+    - path: artifacts/power_transformer.pkl
       hash: md5
-      md5: 3d04a634fe3655e5bb09022445e22a8e
-      size: 500
+      md5: afb2797fa51ded52d5e84b9452bf9406
+      size: 996
     - path: artifacts/scaler.pkl
       hash: md5
-      md5: 20819d35124baa4548b30f6722e533d0
-      size: 129
+      md5: 949c81ee57d528dedd9124231e919768
+      size: 1012
     - path: data/preprocess
       hash: md5
-      md5: bd68ae566e7bfca851a7c9cc65eeebc3.dir
-      size: 40613023
+      md5: 3c41affc0edd2ac3872c316c22f12c68.dir
+      size: 37492410
       nfiles: 4
   model_training:
     cmd: python src/model_training.py
     deps:
     - path: data/preprocess/x_train_processed.csv
       hash: md5
-      md5: e828385f0de2a7a24b01405b1f148528
-      size: 33627158
+      md5: ad405b1a098093fbd3e200897d4ce666
+      size: 31241017
     - path: data/preprocess/y_train_processed.csv
       hash: md5
-      md5: 15fce65032e0b6680b7474d9a9ec78f2
-      size: 612178
+      md5: 1fc557a3f186f7cd64d0718a8955e1c5
+      size: 367312
     params:
       params.yaml:
         model_training.model_type: xgboost
         model_training.params.colsample_bytree: 0.8
-        model_training.params.learning_rate: 0.1
-        model_training.params.max_depth: 5
-        model_training.params.n_estimators: 100
+        model_training.params.learning_rate: 0.05
+        model_training.params.max_depth: 7
+        model_training.params.n_estimators: 300
         model_training.params.subsample: 0.8
     outs:
     - path: artifacts/xgb_model.pkl
       hash: md5
-      md5: cc04e64877869281be0a73355912d00d
-      size: 788667
+      md5: df66ca0edad12e7021dc0776dbcf7e90
+      size: 6097024
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
     - path: data/preprocess/x_test_processed.csv
       hash: md5
-      md5: c939988f71a4f5c262b33640e2419f12
-      size: 6259674
+      md5: 64ffcc8e8da0ef3a0da43c8a8f631d05
+      size: 5815668
     - path: data/preprocess/y_test_processed.csv
       hash: md5
-      md5: 786aac8dfc7ccbd90a53840972f006a1
-      size: 114013
+      md5: f1507ca46f758b41533f63efcf2fa01c
+      size: 68413
     params:
       params.yaml:
         model_training.model_type: xgboost
         model_training.params.colsample_bytree: 0.8
-        model_training.params.learning_rate: 0.1
-        model_training.params.max_depth: 5
-        model_training.params.n_estimators: 100
+        model_training.params.gamma: 0.5
+        model_training.params.learning_rate: 0.05
+        model_training.params.max_depth: 7
+        model_training.params.n_estimators: 300
+        model_training.params.random_state: 42
+        model_training.params.reg_alpha: 1
+        model_training.params.reg_lambda: 2
         model_training.params.subsample: 0.8
     outs:
     - path: artifacts/confusion_matrix.png
       hash: md5
-      md5: 99e3b358104de27402d515589f52cfd4
-      size: 22200
+      md5: 786b4e16ad7241868c3f9ec9a23887cd
+      size: 22676
     - path: artifacts/metrics.json
       hash: md5
-      md5: a38053baeab736c970b01bfb515aeb39
-      size: 196
+      md5: 29c3436a6d5f73d09493a6c17874b1dc
+      size: 198
