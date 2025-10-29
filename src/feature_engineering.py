@@ -92,9 +92,6 @@ def generate_embeddings(train_df, test_df,column="track_genre"):
     except Exception as e:
         logger.error("Unexpected error occurred!!",e)
     
-         
-  
-
     
 def scale_pca(train_vec:pd.DataFrame,test_vec:pd.DataFrame)->pd.DataFrame:
     """ Applying Standard Scalar and PCA """
@@ -120,7 +117,7 @@ def find_optimal_k(pca_df_train,save_dir="artifacts",file_path="Optimal_k.png"):
     try:
         os.makedirs(save_dir,exist_ok=True)
         save_path=os.path.join(save_dir,file_path)
-        visualizer=KElbowVisualizer(KMeans(),k=(2,11),timings=False,metric="distortion")
+        visualizer=KElbowVisualizer(KMeans(random_state=42),k=(2,11),timings=False,metric="distortion")
         visualizer.fit(pca_df_train)
         visualizer.show(outpath=save_path, clear_figure=True)
         plt.close() 
