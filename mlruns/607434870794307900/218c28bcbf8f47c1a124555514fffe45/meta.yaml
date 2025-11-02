@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Dell/OneDrive%20-%20Havells/Desktop/Classify-Spotify-Track-Genre/mlruns/607434870794307900/218c28bcbf8f47c1a124555514fffe45/artifacts
+end_time: 1761631691134
+entry_point_name: ''
+experiment_id: '607434870794307900'
+lifecycle_stage: active
+run_id: 218c28bcbf8f47c1a124555514fffe45
+run_name: redolent-squid-948
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761631678088
+status: 3
+tags: []
+user_id: Dell

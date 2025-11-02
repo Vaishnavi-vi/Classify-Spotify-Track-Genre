@@ -7,7 +7,7 @@ import logging
 import os
 import numpy as np
 
-# -------------------- Logging Setup --------------------
+
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
 
@@ -43,7 +43,6 @@ except Exception as e:
     raise
 
 
-# -------------------- Load Model --------------------
 try:
     model = mlflow.xgboost.load_model("models:/xgboost_classifier/1")
     logger.debug("Model loaded successfully from MLflow registry.")
@@ -58,7 +57,7 @@ except Exception as e:
         raise
 
 
-# -------------------- Prediction Function --------------------
+
 def prediction(user_input: dict):
     try:
         # Convert input dict to DataFrame

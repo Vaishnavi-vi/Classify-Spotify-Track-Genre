@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Dell/OneDrive%20-%20Havells/Desktop/Classify-Spotify-Track-Genre/mlruns/0/91575790e0f54249ad5371ebde9f9744/artifacts
+end_time: 1761631708070
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 91575790e0f54249ad5371ebde9f9744
+run_name: XGBoost_Evaluation
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761631698187
+status: 3
+tags: []
+user_id: Dell

@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Dell/OneDrive%20-%20Havells/Desktop/Classify-Spotify-Track-Genre/mlruns/607434870794307900/models/m-41ac83dd31c841cd8140308d802b5c8a/artifacts
+creation_timestamp: 1761661193406
+experiment_id: '607434870794307900'
+last_updated_timestamp: 1761661197348
+model_id: m-41ac83dd31c841cd8140308d802b5c8a
+model_type: null
+name: model
+source_run_id: 0dfb03d8e29742e994b7357ee3900355
+status: 2
+status_message: null

@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Dell/OneDrive%20-%20Havells/Desktop/Classify-Spotify-Track-Genre/mlruns/607434870794307900/00360fabc2a543f3bd313aaf95ac5097/artifacts
+end_time: 1761587891369
+entry_point_name: ''
+experiment_id: '607434870794307900'
+lifecycle_stage: active
+run_id: 00360fabc2a543f3bd313aaf95ac5097
+run_name: bemused-fly-79
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761587881519
+status: 3
+tags: []
+user_id: Dell
