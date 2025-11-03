@@ -1,0 +1,15 @@
+artifacts/cluster_metrics.json
+artifacts/cluster_plots.png
+artifacts/confusion_matrix.png
+artifacts/metrics.json
+artifacts/Optimal_k.png
+artifacts/mi_feature_importance.png
+mlruns
+.dvc
+.dvc/cache/
+__pycache__/
+logs
+venv/
+.git
+.gitignore
+
