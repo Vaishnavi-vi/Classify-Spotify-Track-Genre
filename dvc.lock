@@ -30,21 +30,21 @@ stages:
       nfiles: 2
     - path: src/feature_engineering.py
       hash: md5
-      md5: 6aead9d955276a28c2123cdbe2fcaf48
-      size: 10814
+      md5: 566c2274785a5e9287d74e5808a37ec2
+      size: 10812
     outs:
     - path: artifacts/Optimal_k.png
       hash: md5
-      md5: 2f4cdd3394bd5cdc80278194e75d8d53
-      size: 34032
+      md5: 83a4daee242acf774aa25dd0521a2840
+      size: 31668
     - path: artifacts/cluster_metrics.json
       hash: md5
-      md5: 64fa40f43028256c49efd80d3fd2a732
-      size: 113
+      md5: ed1391262026dda82d93aa8491aacf05
+      size: 112
     - path: artifacts/cluster_plots.png
       hash: md5
-      md5: 771ec47816c420e46b48154769dfd282
-      size: 46401
+      md5: 6af03a2959ab1b558b759abf054f19ff
+      size: 44829
     - path: data/feature_engineering
       hash: md5
       md5: f6d79518a8829602a378712cd5ce9f46.dir
@@ -102,7 +102,7 @@ stages:
     outs:
     - path: artifacts/xgb_model.pkl
       hash: md5
-      md5: 536526c54e80c2f7b383febf3ad5e935
+      md5: 6e651665e6ff106e0513304da8beb87b
       size: 6097024
   model_evaluation:
     cmd: python src/model_evaluation.py
