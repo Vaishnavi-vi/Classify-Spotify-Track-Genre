@@ -102,7 +102,7 @@ stages:
     outs:
     - path: artifacts/xgb_model.pkl
       hash: md5
-      md5: 6e651665e6ff106e0513304da8beb87b
+      md5: 475088057255eb79efc40f2b2b03564d
       size: 6097024
   model_evaluation:
     cmd: python src/model_evaluation.py
