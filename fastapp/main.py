@@ -40,6 +40,16 @@ logger.addHandler(file_handler)
 def view():
     return {"message":"Track Genre Classification API is running!"}
 
+@app.get("/health")
+def health():
+    """
+    Simple health check to ensure API is running
+    """
+    return {
+        "status": "ok",
+        "message": "Track Genre Classifier API is up and running!"
+    }
+
 
 @app.post("/predict")
 def predict(value:user_input):
